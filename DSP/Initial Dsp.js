@@ -1,11 +1,20 @@
- Content.makeFrontInterface(200, 400);
+ Content.makeFrontInterface(600, 350);
 
 //Components References
- const var ScriptFX1 = Synth.getEffect("ScriptFX1");
- const var AudioLoopPlayer1 = Synth.getChildSynth("Audio Loop Player1");
- const var Knob1 = Content.getComponent("Knob1");
- const var Button2 = Content.getComponent("Button2");
- const var Verge = Content.getComponent("Verge");
+
+const var ScriptFX1 = Synth.getEffect("ScriptFX1");
+const var AudioLoopPlayer1 = Synth.getChildSynth("Audio Loop Player1");
+const var Knob1 = Content.getComponent("Knob1");
+const var Button2 = Content.getComponent("Button2");
+const var Verge = Content.getComponent("Verge");
+const var Swallow = Content.getComponent("Swallow");
+const var StretchX = Content.getComponent("StretchX");
+const var VerbTense = Content.getComponent("VerbTense");
+const var Blend = Content.getComponent("Blend");
+ 
+ 
+ 
+ 
  
  
  
@@ -58,24 +67,37 @@ const var tValue = Engine.createTimerObject();
  });
  
 
-function onNoteOn()
+
+inline function onSwallowControl(component, value)
 {
-	
-}
- function onNoteOff()
+	ScriptFX1.setAttribute(ScriptFX1.Swallow, value);
+};
+
+Swallow.setControlCallback(onSwallowControl);
+
+
+inline function onStretchXControl(component, value)
 {
-	
-}
- function onController()
+	ScriptFX1.setAttribute(ScriptFX1.StretchX, value);
+};
+
+StretchX.setControlCallback(onStretchXControl);
+
+ 
+ inline function onVerbTenseControl(component, value)
+ {
+ 	ScriptFX1.setAttribute(ScriptFX1.VerbTense, value);
+ };
+ 
+VerbTense.setControlCallback(onVerbTenseControl);
+
+
+
+inline function onBlendControl(component, value)
 {
-	
-}
- function onTimer()
-{
-	
-}
- function onControl(number, value)
-{
-	
-}
+	ScriptFX1.setAttribute(ScriptFX1.Blend, value);
+};
+
+Content.getComponent("Blend").setControlCallback(onBlendControl);
+
  
