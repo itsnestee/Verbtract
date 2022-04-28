@@ -1,6 +1,6 @@
  Content.makeFrontInterface(600, 350);
 
-//Components References
+//Components References 
 
 const var ScriptFX1 = Synth.getEffect("ScriptFX1");
 const var AudioLoopPlayer1 = Synth.getChildSynth("Audio Loop Player1");
@@ -67,7 +67,7 @@ const var tValue = Engine.createTimerObject();
  });
  
 
-
+//Calback Functions
 inline function onSwallowControl(component, value)
 {
 	ScriptFX1.setAttribute(ScriptFX1.Swallow, value);
