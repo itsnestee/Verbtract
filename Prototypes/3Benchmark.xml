@@ -9,14 +9,18 @@
         <Processor Type="ScriptProcessor" ID="Script Processor1" Bypassed="0">
           <ChildProcessors/>
           <Content>
-            <Control type="ScriptButton" id="Button1" value="0.0"/>
             <Control type="ScriptSlider" id="Knob1" value="-100.0"/>
             <Control type="ScriptButton" id="Button2" value="0.0"/>
             <Control type="ScriptSlider" id="Verge" value="2.490000009536743"/>
-            <Control type="ScriptSlider" id="Swallow" value="1.0"/>
-            <Control type="ScriptSlider" id="StretchX" value="1.0"/>
-            <Control type="ScriptSlider" id="VerbTense" value="0.4600000083446503"/>
-            <Control type="ScriptSlider" id="Blend" value="1.0"/>
+            <Control type="ScriptSlider" id="Size" value="0.009999999776482582"/>
+            <Control type="ScriptSlider" id="Density" value="0.9800000190734863"/>
+            <Control type="ScriptSlider" id="Reflectivity" value="1.0"/>
+            <Control type="ScriptSlider" id="Distance" value="0.009999999776482582"/>
+            <Control type="ScriptSlider" id="D1" value="0.009999999776482582"/>
+            <Control type="ScriptSlider" id="D2" value="0.01999999955296516"/>
+            <Control type="ScriptSlider" id="D3" value="0.02999999932944775"/>
+            <Control type="ScriptSlider" id="D4" value="0.03999999910593033"/>
+            <Control type="ScriptSlider" id="D5" value="0.04999999888241291"/>
           </Content>
           <UIData Source="3BenchmarkUIData"/>
         </Processor>
@@ -70,6 +74,45 @@
               </UIData>
             </Processor>
           </ChildProcessors>
+        </Processor>
+      </ChildProcessors>
+      <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+    </Processor>
+    <Processor Type="WaveSynth" ID="Waveform Generator1" Bypassed="1" Gain="0.25"
+               Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0" IconColour="0"
+               OctaveTranspose1="0.0" OctaveTranspose2="0.0" Detune1="0.0" Detune2="0.0"
+               WaveForm1="5.0" WaveForm2="3.0" Pan1="0.0" Pan2="0.0" Mix="0.5"
+               EnableSecondOscillator="0.0" PulseWidth1="0.0" PulseWidth2="0.5"
+               HardSync="0.0">
+      <ChildProcessors>
+        <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
+          <ChildProcessors>
+            <Processor Type="SimpleEnvelope" ID="DefaultEnvelope2" Bypassed="0" Monophonic="0.0"
+                       Retrigger="1.0" Intensity="1.0" Attack="5.0" Release="10.0" LinearMode="1.0">
+              <ChildProcessors>
+                <Processor Type="ModulatorChain" ID="Attack Time Modulation" Bypassed="0"
+                           Intensity="1.0">
+                  <ChildProcessors/>
+                </Processor>
+              </ChildProcessors>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="PitchModulation" Bypassed="0" Intensity="0.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="EffectChain" ID="FX" Bypassed="0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="Mix Modulation" Bypassed="0" Intensity="1.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="Osc2 Pitch Modulation" Bypassed="0"
+                   Intensity="0.0">
+          <ChildProcessors/>
         </Processor>
       </ChildProcessors>
       <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
