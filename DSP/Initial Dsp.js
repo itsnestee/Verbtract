@@ -1,45 +1,93 @@
- Content.makeFrontInterface(600, 350);
+Content.makeFrontInterface(600, 350);
 
-//Components References 
-
+//Components References
 const var ScriptFX1 = Synth.getEffect("ScriptFX1");
 const var AudioLoopPlayer1 = Synth.getChildSynth("Audio Loop Player1");
-const var Knob1 = Content.getComponent("Knob1");
-const var Button2 = Content.getComponent("Button2");
 const var Verge = Content.getComponent("Verge");
-const var Swallow = Content.getComponent("Swallow");
-const var StretchX = Content.getComponent("StretchX");
-const var VerbTense = Content.getComponent("VerbTense");
-const var Blend = Content.getComponent("Blend");
- 
- 
- 
- 
- 
- 
- 
- // Trigger AudioPlayer
- reg ev;
- inline function onButton1Control(component, value)
- {
- 	if(value == 1)
- 	{
-	 	ev = Synth.playNote(60, 60);
-	 	tValue.startTimer(30);
- 	}
- 	
-	else if (value == 0)
- 	{
-	 	Synth.noteOffByEventId(ev);
-	 	 	tValue.stopTimer();
- 	}
- 
+const var Button2 = Content.getComponent("Button2");
+const var Size = Content.getComponent("Size");
+const var Density = Content.getComponent("Density");
+const var Reflectivity = Content.getComponent("Reflectivity");
+const var Distance = Content.getComponent("Distance");
+
+const var D1 = Content.getComponent("D1");
+const var D2 = Content.getComponent("D2");
+const var D3 = Content.getComponent("D3");
+const var D4 = Content.getComponent("D4");
+const var D5 = Content.getComponent("D5");
+
+reg offset = Distance.getValue();
+
+inline function onDistanceControl(component, value)
+{
+	D2.setValue(D1.getValue() + Distance.getValue());
+	D3.setValue(D2.getValue() + Distance.getValue());
+	D4.setValue(D3.getValue() + Distance.getValue());
+	D5.setValue(D4.getValue() + Distance.getValue());	
+	
+	ScriptFX1.setAttribute(ScriptFX1.Size1, D1.getValue());
+	ScriptFX1.setAttribute(ScriptFX1.Size2, D1.getValue() + Distance.getValue());
+	ScriptFX1.setAttribute(ScriptFX1.Size3, D2.getValue() + Distance.getValue());
+	ScriptFX1.setAttribute(ScriptFX1.Size4, D3.getValue() + Distance.getValue());
+	ScriptFX1.setAttribute(ScriptFX1.Size5, D4.getValue() + Distance.getValue());	    
 };
+
+Distance.setControlCallback(onDistanceControl);
+
+
+inline function onSizeControl(component, value)
+{
+	
+	D1.setValue(value);
+	D2.setValue(D1.getValue() + Distance.getValue());
+	D3.setValue(D2.getValue() + Distance.getValue());
+	D4.setValue(D3.getValue() + Distance.getValue());
+	D5.setValue(D4.getValue() + Distance.getValue());
+	
+	ScriptFX1.setAttribute(ScriptFX1.Size1, D1.getValue());
+	ScriptFX1.setAttribute(ScriptFX1.Size2, D1.getValue() + Distance.getValue());
+	ScriptFX1.setAttribute(ScriptFX1.Size3, D2.getValue() + Distance.getValue());
+	ScriptFX1.setAttribute(ScriptFX1.Size4, D3.getValue() + Distance.getValue());
+	ScriptFX1.setAttribute(ScriptFX1.Size5, D4.getValue() + Distance.getValue());
+	
+	D2.changed();
+	D3.changed();
+	D4.changed();
+	D5.changed();
+};
+
+Size.setControlCallback(onSizeControl);
+
+inline function onDensityControl(component, value)
+{
+	ScriptFX1.setAttribute(ScriptFX1.Density, value);
+};
+
+Density.setControlCallback(onDensityControl);
+
+inline function onReflectivityControl(component, value)
+{
+	ScriptFX1.setAttribute(ScriptFX1.Reflectivity, value);
+};
+
+Reflectivity.setControlCallback(onReflectivityControl);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  
-Content.getComponent("Button1").setControlCallback(onButton1Control);
- 
- 
- 
+
 const var tValue = Engine.createTimerObject();
  
  tValue.setTimerCallback(function()
@@ -67,37 +115,7 @@ const var tValue = Engine.createTimerObject();
  });
  
 
-//Calback Functions
-inline function onSwallowControl(component, value)
-{
-	ScriptFX1.setAttribute(ScriptFX1.Swallow, value);
-};
-
-Swallow.setControlCallback(onSwallowControl);
 
 
-inline function onStretchXControl(component, value)
-{
-	ScriptFX1.setAttribute(ScriptFX1.StretchX, value);
-};
-
-StretchX.setControlCallback(onStretchXControl);
-
- 
- inline function onVerbTenseControl(component, value)
- {
- 	ScriptFX1.setAttribute(ScriptFX1.VerbTense, value);
- };
- 
-VerbTense.setControlCallback(onVerbTenseControl);
-
-
-
-inline function onBlendControl(component, value)
-{
-	ScriptFX1.setAttribute(ScriptFX1.Blend, value);
-};
-
-Content.getComponent("Blend").setControlCallback(onBlendControl);
 
  
