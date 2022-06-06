@@ -1,2 +1,2 @@
 # Verbtract
-Verbtract is an Audio Software Plugin containing a reverb module / effect algorithm.
+Verbtract is an Audio Software Plugin containing a reverb module / effect algorithm .
